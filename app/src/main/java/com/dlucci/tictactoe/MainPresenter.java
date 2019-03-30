@@ -17,15 +17,16 @@ class MainPresenter {
 
 
     /**
-     * 1. Check if there is a tie
-     * 2. Check every element  from beginning to beginning + LENGTH to see if a row has been conquered
-     * 3. Check every LENGTH element to see if a column has been conquered
-     * 4. Check value at 0, LENGTH-1, LENGTH*(LENGTH-1), and (LENGTH^2)-1 to see if corners are conquered
-     * 5. Check neighbors of current position to see if a box can be made
+     * 1.
+     * 2.
+     * 3.
+     * 4.
+     * 5. C
      *
      */
     public boolean solution(int x, int numOfO, int numOfX, Context context, MainAdapter mainAdapter, char[] values) {
 
+        //Check if there is a tie
         if(numOfX + numOfO == (LENGTH*LENGTH)){
             mainAdapter.buildAndShowAlert("This Game is a tie!", context);
             return false;
@@ -38,6 +39,7 @@ class MainPresenter {
 
         int total = 0;
 
+        //Check every element  from beginning to beginning + LENGTH to see if a row has been conquered
         int position = x - (x % 4);
         for (int i = position; i < position + LENGTH; i++) {
             if (start == values[i]) {
@@ -52,7 +54,7 @@ class MainPresenter {
         total = 0;
         position = x % LENGTH;
 
-        //column
+        //Check every LENGTH element to see if a column has been conquered
         for (int i = position; i < LENGTH * LENGTH; i += LENGTH) {
             if (start == values[i]) {
                 total++;
@@ -64,7 +66,7 @@ class MainPresenter {
         if (total == LENGTH)
             return true;
 
-        //corners
+        //Check value at 0, LENGTH-1, LENGTH*(LENGTH-1), and (LENGTH^2)-1 to see if corners are conquered
         if (isACorner(x)) {
             if (values[0] == start && values[LENGTH - 1] == start
                     && values[LENGTH * (LENGTH - 1)] == start && values[(LENGTH * LENGTH) - 1] == start) {
@@ -102,7 +104,7 @@ class MainPresenter {
             }
         }
 
-        //box
+        //Check neighbors of current position to see if a box can be made
         return box(x, start, values);
     }
 
