@@ -11,12 +11,15 @@ class MainPresenter {
 
     MainView mainView;
 
+    @VisibleForTesting
+    MainPresenter() { }
+
     public MainPresenter(MainView mainView) {
 
         this.mainView = mainView;
     }
 
-    public boolean solution(int x, int numOfO, int numOfX, Context context, MainAdapter mainAdapter, char[] values) {
+    boolean solution(int x, int numOfO, int numOfX, Context context, MainAdapter mainAdapter, char[] values) {
 
         //Check if there is a tie
         if (checkIfThereIsATie(numOfX, numOfO)) {
@@ -49,16 +52,14 @@ class MainPresenter {
         }
 
         //Check neighbors of current position to see if a box can be made
-        if(box(x, start, values)){
-            return true;
-        }
+//        if(box(x, start, values)){
+//            return true;
+//        }
 
         return false;
     }
 
-
-
-    private boolean box(int x, char start, char[] values) {
+    public boolean box(int x, char start, char[] values) {
         //4 iterations
         if (x % (LENGTH) != 1 && x >= LENGTH && (x + 1) < (LENGTH * LENGTH)) {
             if (values[x] == start && values[x + 1] == start && values[x - LENGTH] == start)
@@ -81,7 +82,7 @@ class MainPresenter {
         return false;
     }
 
-    private static boolean isACorner(int x) {
+    public boolean isACorner(int x) {
         if (x == 0 || x == (LENGTH - 1) || x == (LENGTH * (LENGTH - 1)) || x == ((LENGTH * LENGTH) - 1)) {
             return true;
         }
@@ -98,19 +99,14 @@ class MainPresenter {
             mainView.nextTurn(R.drawable.ex);
     }
 
-
-
-    @VisibleForTesting
     private boolean checkIfThereIsATie(int numOfX, int numOfO) {
-        return (numOfX + numOfO) == (LENGTH * LENGTH);
+        return (numOfX * numOfO) == (LENGTH * LENGTH);
     }
 
-    @VisibleForTesting
     private boolean checkIfEmpty(char value) {
         return value == ' ';
     }
 
-    @VisibleForTesting
     private boolean checkRow(int x, char start, char[] values) {
         int total = 0;
 
@@ -126,8 +122,7 @@ class MainPresenter {
         return total == LENGTH;
     }
 
-    @VisibleForTesting
-    private boolean checkColumn(int x, int start, char[] values) {
+    private boolean checkColumn(int x, char start, char[] values) {
 
         int total = 0;
         int position = x % LENGTH;
@@ -144,14 +139,12 @@ class MainPresenter {
         return total == LENGTH;
     }
 
-    @VisibleForTesting
-    private boolean checkCorners(int start, char[] values) {
+    public boolean checkCorners(char start, char[] values) {
         return (values[0] == start && values[LENGTH - 1] == start
                 && values[LENGTH * (LENGTH - 1)] == start && values[(LENGTH * LENGTH) - 1] == start);
     }
 
-    @VisibleForTesting
-    private boolean checkDiagonalToRight(int x, int start, char[] values) {
+    public boolean checkDiagonalToRight(int x, char start, char[] values) {
         int total = 0;
         if (x % (LENGTH + 1) == 0) {
             for (int i = 0; i < (LENGTH * LENGTH); i += (LENGTH + 1)) {
@@ -168,8 +161,7 @@ class MainPresenter {
         return false;
     }
 
-    @VisibleForTesting
-    private boolean checkDiagonalToLeft(int x, char start, char[] values) {
+    public boolean checkDiagonalToLeft(int x, char start, char[] values) {
 
         if (x % (LENGTH - 1) == 0) {
             int total = 0;
@@ -185,5 +177,30 @@ class MainPresenter {
             return  total == LENGTH;
         }
         return false;
+    }
+
+    @VisibleForTesting
+    public boolean isEmpty(char value){
+        return checkIfEmpty(value);
+    }
+
+    @VisibleForTesting
+    public boolean isTie(int numOfX, int numOfY) {
+        return checkIfThereIsATie(numOfX, numOfY);
+    }
+
+    @VisibleForTesting
+    public boolean isRowWinner(int x, char start, char[] values) {
+        return checkRow(x, start, values);
+    }
+
+    @VisibleForTesting
+    public boolean isColumnWinner(int x, char start, char[] values) {
+        return checkColumn(x, start, values);
+    }
+
+    @VisibleForTesting
+    public boolean isCorner(int x) {
+        return isACorner(x);
     }
 }
