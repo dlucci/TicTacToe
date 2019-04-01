@@ -140,10 +140,10 @@ public class MainPresenterTest {
             'x', ' ', ' ', ' '};
 
     char[] winningBox = {
-            ' ', ' ', ' ', ' ',
-            ' ', 'x', 'x', ' ',
-            ' ', 'x', 'x', ' ',
-            ' ', ' ', ' ', ' '};
+            'x', 'x', ' ', ' ',
+            'x', 'x', 'x', ' ',
+            ' ', 'x', 'x', 'x',
+            ' ', ' ', 'x', 'x'};
 
 
     @Before
@@ -232,7 +232,7 @@ public class MainPresenterTest {
 
     @Test
     public void test_box() {
-        assertTrue(mainPresenter.box(5, 'x', winningBox));
+        assertTrue(mainPresenter.box(15, 'x', winningBox));
         assertTrue(mainPresenter.box(6, 'x', winningBox));
         assertTrue(mainPresenter.box(9, 'x', winningBox));
         assertTrue(mainPresenter.box(10, 'x', winningBox));
