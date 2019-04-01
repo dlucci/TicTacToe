@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "679106619972",
+    "firebase_url": "https://tic-tac-to-qa.firebaseio.com",
+    "project_id": "tic-tac-to-qa",
+    "storage_bucket": "tic-tac-to-qa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679106619972:android:24f911407d7dca52",
+        "android_client_info": {
+          "package_name": "com.dlucci.tictactoe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrT8Dq9JJ6cCsHrW2gtNGSM9icGEBd1wU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679106619972-u9g26en5g72791ehni7hm68vo7ampjup.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
