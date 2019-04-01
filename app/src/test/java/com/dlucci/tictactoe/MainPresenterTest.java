@@ -2,17 +2,15 @@ package com.dlucci.tictactoe;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runner.Runner;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 public class MainPresenterTest {
 
     MainPresenter mainPresenter;
@@ -221,6 +219,7 @@ public class MainPresenterTest {
         assertTrue(mainPresenter.checkDiagonalToRight(0, 'x', winningDiagonalToRight));
         assertFalse(mainPresenter.checkDiagonalToRight(0, 'x', winningColumnFirst));
         assertFalse(mainPresenter.checkDiagonalToRight(0, 'o', winningDiagonalToRight));
+        assertFalse(mainPresenter.checkDiagonalToRight(0, 'x', winningBox));
     }
 
     @Test
@@ -228,5 +227,17 @@ public class MainPresenterTest {
         assertTrue(mainPresenter.checkDiagonalToLeft(0, 'x', winningDiagonalToLeft));
         assertFalse(mainPresenter.checkDiagonalToLeft(0, 'x', winningColumnFirst));
         assertFalse(mainPresenter.checkDiagonalToLeft(0, 'o', winningDiagonalToLeft));
+        assertFalse(mainPresenter.checkDiagonalToLeft(0, 'x', winningBox));
     }
+
+    @Test
+    public void test_box() {
+        assertTrue(mainPresenter.box(5, 'x', winningBox));
+        assertTrue(mainPresenter.box(6, 'x', winningBox));
+        assertTrue(mainPresenter.box(9, 'x', winningBox));
+        assertTrue(mainPresenter.box(10, 'x', winningBox));
+
+        assertFalse(mainPresenter.box(10, 'o', winningBox));
+    }
+
 }

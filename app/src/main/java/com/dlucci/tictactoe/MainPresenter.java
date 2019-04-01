@@ -12,7 +12,8 @@ class MainPresenter {
     MainView mainView;
 
     @VisibleForTesting
-    MainPresenter() { }
+    MainPresenter() {
+    }
 
     public MainPresenter(MainView mainView) {
 
@@ -32,10 +33,10 @@ class MainPresenter {
         if (checkIfEmpty(start))
             return false;
 
-        if(checkRow(x, start, values))
+        if (checkRow(x, start, values))
             return true;
 
-        if(checkColumn(x, start, values))
+        if (checkColumn(x, start, values))
             return true;
 
         //Check value at 0, LENGTH-1, LENGTH*(LENGTH-1), and (LENGTH^2)-1 to see if corners are conquered
@@ -43,41 +44,41 @@ class MainPresenter {
             return true;
         }
 
-        if(checkDiagonalToRight(x, start, values)){
+        if (checkDiagonalToRight(x, start, values)) {
             return true;
         }
 
-        if(checkDiagonalToLeft(x, start, values)){
+        if (checkDiagonalToLeft(x, start, values)) {
             return true;
         }
 
         //Check neighbors of current position to see if a box can be made
-//        if(box(x, start, values)){
-//            return true;
-//        }
+        if(box(x, start, values)){
+            return true;
+        }
 
         return false;
     }
 
     public boolean box(int x, char start, char[] values) {
         //4 iterations
-        if (x % (LENGTH) != 1 && x >= LENGTH && (x + 1) < (LENGTH * LENGTH)) {
+
+        if(x - LENGTH >= 0 && x + 1 <= (LENGTH*LENGTH) - 1) {
             if (values[x] == start && values[x + 1] == start && values[x - LENGTH] == start)
                 return true;
-
         }
-        if (x % (LENGTH) != 1 && x < (LENGTH * (LENGTH - 1))) {
+        if(x + 1 <= (LENGTH*LENGTH) - 1) {
             if (values[x + 1] == start && values[x + LENGTH + 1] == start && values[x + LENGTH] == start)
                 return true;
         }
-        if (x < (LENGTH * (LENGTH - 1)) && x % LENGTH != 0) {
+
+        if(x + LENGTH < LENGTH*LENGTH && x + (LENGTH-1) < (LENGTH*LENGTH)) {
             if (values[x + LENGTH] == start && values[x + (LENGTH - 1)] == start && values[x - 1] == start)
                 return true;
         }
-        if (x >= LENGTH) {
-            if (values[x - 1] == start && values[x - (LENGTH + 1)] == start && values[x - LENGTH] == start)
-                return true;
-        }
+
+        if (values[x - 1] == start && values[x - (LENGTH + 1)] == start && values[x - LENGTH] == start)
+            return true;
 
         return false;
     }
@@ -103,7 +104,7 @@ class MainPresenter {
         return (numOfX * numOfO) == (LENGTH * LENGTH);
     }
 
-    private boolean checkIfEmpty(char value) {
+    public boolean checkIfEmpty(char value) {
         return value == ' ';
     }
 
@@ -174,13 +175,12 @@ class MainPresenter {
                 }
             }
 
-            return  total == LENGTH;
+            return total == LENGTH;
         }
         return false;
     }
 
-    @VisibleForTesting
-    public boolean isEmpty(char value){
+    public boolean isEmpty(char value) {
         return checkIfEmpty(value);
     }
 
