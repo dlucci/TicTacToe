@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/current"
-        android:text="Current Player"
+        android:text="Current Player: "
         android:textSize="20dp"
         android:layout_marginTop="20dp"
         android:layout_alignParentTop="true"
@@ -14,12 +14,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ImageView
+    <TextView
         android:id="@+id/currentTurn"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_height="100dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:text="B"
         android:layout_above="@id/recycler"
+
         android:layout_toEndOf="@id/current"/>
 
     <androidx.recyclerview.widget.RecyclerView

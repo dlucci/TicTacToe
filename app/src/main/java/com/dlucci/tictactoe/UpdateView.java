@@ -4,5 +4,5 @@ import android.content.Context;
 
 interface UpdateView {
 
-    void updateItem(int position, int id, Context context);
+    void updateItem(int position, char next, Context context);
 }
