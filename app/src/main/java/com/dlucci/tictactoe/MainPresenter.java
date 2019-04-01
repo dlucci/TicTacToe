@@ -77,8 +77,10 @@ class MainPresenter {
                 return true;
         }
 
-        if (values[x - 1] == start && values[x - (LENGTH + 1)] == start && values[x - LENGTH] == start)
-            return true;
+        if(x - (LENGTH + 1) >= 0) {
+            if (values[x - 1] == start && values[x - (LENGTH + 1)] == start && values[x - LENGTH] == start)
+                return true;
+        }
 
         return false;
     }

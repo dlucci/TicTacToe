@@ -140,9 +140,9 @@ public class MainPresenterTest {
             'x', ' ', ' ', ' '};
 
     char[] winningBox = {
+            'x', 'x', ' ', ' ',
+            'x', 'x', ' ', ' ',
             ' ', ' ', ' ', ' ',
-            ' ', 'x', 'x', ' ',
-            ' ', 'x', 'x', ' ',
             ' ', ' ', ' ', ' '};
 
 
@@ -232,12 +232,12 @@ public class MainPresenterTest {
 
     @Test
     public void test_box() {
+        assertTrue(mainPresenter.box(0, 'x', winningBox));
+        assertTrue(mainPresenter.box(1, 'x', winningBox));
+        assertTrue(mainPresenter.box(4, 'x', winningBox));
         assertTrue(mainPresenter.box(5, 'x', winningBox));
-        assertTrue(mainPresenter.box(6, 'x', winningBox));
-        assertTrue(mainPresenter.box(9, 'x', winningBox));
-        assertTrue(mainPresenter.box(10, 'x', winningBox));
 
-        assertFalse(mainPresenter.box(10, 'o', winningBox));
+        assertFalse(mainPresenter.box(0, 'o', winningBox));
     }
 
 }
