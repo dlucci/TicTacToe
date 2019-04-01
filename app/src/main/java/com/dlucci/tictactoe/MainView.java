@@ -1,12 +1,12 @@
 package com.dlucci.tictactoe;
 
-import android.widget.ImageView;
+import android.content.Context;
 
 interface MainView {
 
-    void nextTurn(int first);
+    void nextTurn(char first);
 
-    ImageView getCurrentImage();
+    Context getContext();
 
     void newGame();
 }

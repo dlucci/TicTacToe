@@ -2,33 +2,38 @@ package com.dlucci.tictactoe;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 class MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public ImageView imageView;
+    public TextView cell;
     public UpdateView updateView;
-    public ImageView currentTurn;
 
-    public MainViewHolder(@NonNull View itemView, UpdateView updateView, ImageView currentTurn) {
+    public MainViewHolder(@NonNull View itemView, UpdateView updateView) {
         super(itemView);
 
-        imageView = itemView.findViewById(R.id.image);
+        cell = itemView.findViewById(R.id.image);
         this.updateView = updateView;
         this.itemView.setOnClickListener(this);
-
-        this.currentTurn = currentTurn;
     }
 
     @Override
     public void onClick(View view) {
-        if(currentTurn.getTag().equals(R.drawable.circle)) {
-            imageView.setImageResource(R.drawable.circle);
-            updateView.updateItem(getAdapterPosition(), R.drawable.circle, view.getContext());
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        char currentTurn = preferences.getString("currentTurn", " ").charAt(0);
+        if(currentTurn == 'o') {
+            cell.setText(Character.toString('o'));
+            preferences.edit().putString("currentTurn", "x").apply();
+            updateView.updateItem(getAdapterPosition(), 'o', view.getContext());
         } else {
-            imageView.setImageResource(R.drawable.ex);
-            updateView.updateItem(getAdapterPosition(), R.drawable.ex, view.getContext());
+            cell.setText(Character.toString('x'));
+            preferences.edit().putString("currentTurn", "o").apply();
+            updateView.updateItem(getAdapterPosition(), 'x', view.getContext());
         }
 
         itemView.setOnClickListener(null);

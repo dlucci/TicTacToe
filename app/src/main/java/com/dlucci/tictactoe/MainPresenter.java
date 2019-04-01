@@ -1,6 +1,7 @@
 package com.dlucci.tictactoe;
 
 import android.content.Context;
+
 import androidx.annotation.VisibleForTesting;
 
 class MainPresenter {
@@ -97,13 +98,13 @@ class MainPresenter {
 
         int seed = Double.valueOf(Math.random() * 10).intValue();
         if (seed % 2 == 0)
-            mainView.nextTurn(R.drawable.circle);
+            mainView.nextTurn('o');
         else
-            mainView.nextTurn(R.drawable.ex);
+            mainView.nextTurn('x');
     }
 
     private boolean checkIfThereIsATie(int numOfX, int numOfO) {
-        return (numOfX * numOfO) == (LENGTH * LENGTH);
+        return (numOfX == Math.ceil((LENGTH*LENGTH)/2)) && (numOfO == Math.ceil((LENGTH*LENGTH)/2));
     }
 
     public boolean checkIfEmpty(char value) {
@@ -205,4 +206,8 @@ class MainPresenter {
     public boolean isCorner(int x) {
         return isACorner(x);
     }
+
+    //4->8
+    //5->12
+    //6->18
 }

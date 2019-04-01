@@ -161,9 +161,9 @@ public class MainPresenterTest {
 
     @Test
     public void test_CheckIfThereIsATie() {
-        assertTrue(mainPresenter.isTie(4, 4));
-        assertFalse(mainPresenter.isTie(3, 4));
-        assertFalse(mainPresenter.isTie(4, 3));
+        assertTrue(mainPresenter.isTie(8, 8));
+        assertFalse(mainPresenter.isTie(7, 8));
+        assertFalse(mainPresenter.isTie(8, 7));
     }
 
     @Test

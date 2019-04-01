@@ -2,12 +2,17 @@ package com.dlucci.tictactoe;
 
 import android.app.Activity;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends Activity implements MainView, View.OnClickListener {
 
@@ -15,7 +20,7 @@ public class MainActivity extends Activity implements MainView, View.OnClickList
 
     MainAdapter adapter;
 
-    ImageView currentTurn;
+    TextView currentTurn;
 
     Button newGame;
 
@@ -59,9 +64,9 @@ public class MainActivity extends Activity implements MainView, View.OnClickList
     }
 
     @Override
-    public void nextTurn(int first) {
-        currentTurn.setImageResource(first);
-        currentTurn.setTag(first);
+    public void nextTurn(char first) {
+        currentTurn.setText(Character.toString(first));
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putString("currentTurn", Character.toString(first)).apply();
     }
 
     @Override
@@ -71,14 +76,14 @@ public class MainActivity extends Activity implements MainView, View.OnClickList
 
     @Override
     public void newGame() {
-        adapter.setValues();
+        adapter.setValues(this);
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
         presenter.firstTurn();
     }
 
     @Override
-    public ImageView getCurrentImage() {
-        return currentTurn;
+    public Context getContext() {
+        return this;
     }
 }
