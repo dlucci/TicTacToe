@@ -37,3 +37,7 @@
     public static *** e(...);
     public static *** w(...);
 }
+
+-dontwarn androidx.**
+-keep class androidx.** { *; }
+-keep interface androidx.** { *; }
